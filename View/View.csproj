@@ -230,6 +230,9 @@
     </Compile>
     <EmbeddedResource Include="Report.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BusinessLogic.ViewModel.ArticleViewModel.datasource" />
+    <None Include="Properties\DataSources\BusinessLogic.ViewModel.AuthorViewModel.datasource" />
+    <None Include="Properties\DataSources\BusinessLogic.ViewModel.ReportViewModel.datasource" />
     <None Include="Properties\DataSources\BussinessLogic.BindingModel.ArticleBindingModel.datasource" />
     <None Include="Properties\DataSources\BussinessLogic.BindingModel.AuthorBindingModel.datasource" />
     <None Include="Properties\DataSources\BussinessLogic.ViewModel.ArticleViewModel.datasource" />

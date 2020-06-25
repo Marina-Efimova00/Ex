@@ -28,6 +28,6 @@ namespace BusinessLogic.ViewModel
         [DataMember]
         [DisplayName("Название статьи")]
         public string Name { get; set; }
-        
+        public DateTime DateCreate { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BankBussinessLogic.HelperInfo;
 using BusinessLogic.BindingModel;
 using BusinessLogic.ViewModel;
+using BussinessLogic.BindingModel;
 using BussinessLogic.Interface;
 using System;
 using System.Collections.Generic;
@@ -17,24 +18,13 @@ namespace BusinessLogic.BusinessLogic
             this.article = article;
             this.author = author;
         }
-        public List<ArticleViewModel> GetArticles()
+        public List<AuthorViewModel> GetAuthors(ReportBindingModel model)
         {
-            var articles = article.Read(null);
-            var list = new List<ArticleViewModel>();
-            foreach (var serv in articles)
+            var authors = author.Read(new AuthorBindingModel
             {
-                    var record = new ArticleViewModel
-                    {
-                        Name = serv.Name,
-                        DateCreate = serv.DateCreate
-                    };
-                    list.Add(record);
-            }
-            return list;
-        }
-        public List<AuthorViewModel> GetAuthors()
-        {
-            var authors = author.Read(null);
+                DateFrom = model.DateFrom,
+                DateTo = model.DateTo
+            });
             var list = new List<AuthorViewModel>();
             foreach (var serv in authors)
             {
@@ -44,20 +34,20 @@ namespace BusinessLogic.BusinessLogic
                     Name = serv.Name,
                     Birthday =serv.Birthday,
                     Work = serv.Work,
-
+                    DateCreate = serv.DateCreate
                 };
                 list.Add(record);
             }
             return list;
         }
-        public void SaveClientsToPdfFile(string fileName)
+        public void SaveAuthorsToPdfFile(ReportBindingModel model)
         {
             string title = "Авторы и их статьи";
             SaveToPdf.CreateDoc(new PdfInfo
             {
-                FileName = fileName,
+                FileName = model.FileName,
                 Title = title,
-                Authors = GetAuthors(),
+                Authors = GetAuthors(model),
             });
         }
     }

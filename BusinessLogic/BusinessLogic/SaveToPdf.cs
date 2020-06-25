@@ -21,7 +21,7 @@ namespace BusinessLogic.BusinessLogic
             paragraph.Style = "NormalTitle";
             paragraph.Style = "Normal";
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "3cm", "3cm", "3cm", "3cm" };
+            List<string> columns = new List<string> { "3cm","3cm", "3cm", "3cm", "3cm" };
 
             foreach (var elem in columns)
             {
@@ -30,7 +30,7 @@ namespace BusinessLogic.BusinessLogic
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Статья", "ФИО","Дата рождения","Работа" },
+                Texts = new List<string> { "Статья","Дата создания", "ФИО","Дата рождения","Работа" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
@@ -42,6 +42,7 @@ namespace BusinessLogic.BusinessLogic
                     Texts = new List<string>
                     {
                         cl.Name,
+                        cl.DateCreate.ToString(),
                         cl.FIO,
                         cl.Birthday.ToString(),
                         cl.Work

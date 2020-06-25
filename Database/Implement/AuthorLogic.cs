@@ -64,7 +64,7 @@ namespace Database.Implement
             using (var context = new Database())
             {
                 return context.Authors
-                .Where(rec => model == null || rec.Id == model.Id)
+                .Where(rec => model == null || rec.Id == model.Id || model.DateFrom.HasValue && model.DateTo.HasValue && rec.Article.DateCreate >= model.DateFrom && rec.Article.DateCreate <= model.DateTo)
                 .Select(rec => new AuthorViewModel
                 {
                     Id = rec.Id,
@@ -73,7 +73,8 @@ namespace Database.Implement
                     Email = rec.Email,
                     Birthday = rec.Birthday,
                     Work = rec.Work,
-                    Name = rec.Article.Name
+                    Name = rec.Article.Name,
+                    DateCreate= rec.Article.DateCreate
                 })
                 .ToList();
             }
